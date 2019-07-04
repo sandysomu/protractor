@@ -17,9 +17,9 @@ describe('Protractor Demo App', function() {
     secondTextBox.sendKeys(4);
     button.click();
 
-    
-     
-  
-    //  expect(element(by.binding('latest')).getText()).toEqual('9'); // This is wrong!
+    var result = element(by.binding('latest')).getText();
+
+    console.log('****************************  '+ element(by.binding('latest')).getText())
+    expect(result).toMatch('9');
     });
   });
