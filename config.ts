@@ -1,4 +1,5 @@
 import { ProtractorBrowser, Config } from 'protractor';
+var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 
 export let config: Config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -10,10 +11,14 @@ export let config: Config = {
   jasmineNodeOpts: {
     defaultTimeoutInterval: 90000
   },
+
   onPrepare: () => {
    let globals = require('protractor');
    let browser = globals.browser;
    browser.manage().window().maximize();
    browser.manage().timeouts().implicitlyWait(5000);
+   jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
+    savePath: './test/reports/'
+ }));
  }
 }

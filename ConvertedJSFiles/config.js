@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     capabilities: {
@@ -15,5 +16,8 @@ exports.config = {
         var browser = globals.browser;
         browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(5000);
+        jasmine.getEnv().addReporter(new Jasmine2HtmlReporter({
+            savePath: './test/reports/'
+        }));
     }
 };

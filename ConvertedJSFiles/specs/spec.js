@@ -5,15 +5,22 @@ var protractor_1 = require("protractor");
 describe('Protractor Demo App', function () {
     var firstTextBox = protractor_1.element(protractor_1.by.model('first'));
     var secondTextBox = protractor_1.element(protractor_1.by.model('second'));
-    // var operator = element(by.operator(''));
     var button = protractor_1.element(protractor_1.by.id('gobutton'));
-    it('should add one and two', function () {
+    beforeEach(function () {
         protractor_1.browser.get('http://juliemr.github.io/protractor-demo/');
+    });
+    it('should add five and four', function () {
         firstTextBox.sendKeys(5);
         secondTextBox.sendKeys(4);
         button.click();
         var result = protractor_1.element(protractor_1.by.binding('latest')).getText();
-        console.log('****************************  ' + protractor_1.element(protractor_1.by.binding('latest')).getText());
         expect(result).toMatch('9');
+    });
+    it('should add fifteen and four', function () {
+        firstTextBox.sendKeys(15);
+        secondTextBox.sendKeys(4);
+        button.click();
+        var result = protractor_1.element(protractor_1.by.binding('latest')).getText();
+        expect(result).toMatch('20');
     });
 });
